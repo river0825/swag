@@ -18,9 +18,11 @@ COPY . .
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o swag cmd/swag/main.go
 
+COPY swag /root/
+
 
 ######## Start a new stage from scratch #######
-FROM scratch
+FROM golang:1.14-alpine 
 
 WORKDIR /root/
 
